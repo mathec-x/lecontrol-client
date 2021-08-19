@@ -1,0 +1,29 @@
+html, body {
+    padding: 0 auto;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.asset-bg {
+    opacity: .4;
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+    position: absolute;
+    overflow: hidden;
+    background-image: url("../assets/background.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.main{
+    overflow: auto; 
+    height: calc(100vh - 56px);
+    position: relative;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
