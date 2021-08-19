@@ -6,7 +6,7 @@
   "main": "./src",
   "typings": "./src/typings",
   "repository": {
-    "url": "https://bitbucket.org/mathec/client/src/master/"
+    "url": "https://github.com/mathec-x/lecontrol-client.git"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
