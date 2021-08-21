@@ -100,14 +100,14 @@ const Edit = ({ history, match: { params } }) => {
           {validations
             .sort((p, n) => new Date(n.expiration) - new Date(p.expiration))
             .map((x) => (
-              <ListItem dense key={x.uuid} divider disabled={x.delete}>
+              <ListItem dense key={x.uuid} divider disabled={x.deleting}>
                 <ListItemText
                   primaryTypographyProps={{ variant: 'subtitle2' }}
                   primary={x.expiration.moment().format('DD/MM/Y')}
-                  secondary={x.delete && 'Excluíndo'}
+                  secondary={x.deleting && 'Excluíndo'}
                 />
                 <ListItemSecondaryAction>
-                  <IconButton onClick={() => Validation.del(x)} disabled={x.delete}>
+                  <IconButton onClick={() => Validation.del(x)} disabled={x.deleting}>
                     <Delete />
                   </IconButton>
                 </ListItemSecondaryAction>

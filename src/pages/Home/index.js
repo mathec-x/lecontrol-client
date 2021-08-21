@@ -88,11 +88,11 @@ const Home = (props) => {
           {list.map((product) => (
             <StyledListItem
               key={`bar-list-${product.label}`}
-              disabled={product.delete}
+              disabled={product.deleting}
               divider
               button
               primary={product.label}
-              secondary={`${product.delete ? 'Excluíndo ' : ''}produto`}
+              secondary={`${product.deleting ? 'Excluíndo ' : ''}produto`}
               onClick={() => props.history.push(`/register/${product.uuid}`, { background: props.location })}
             />
           ))}

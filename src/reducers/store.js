@@ -2,7 +2,8 @@ import { createStore } from 'redux';
 // import thunk from 'redux-thunk';
 import { persistCombineReducers, persistStore } from 'redux-persist';
 import localforage from 'localforage';
-import { Reducer, user } from './reducer';
+import { ReduxMixer } from 'react-redux-mixer';
+import { user } from './reducer';
 
 const config = {
   key: 'root',
@@ -12,8 +13,8 @@ const config = {
 
 const reducers = persistCombineReducers(config, {
   user,
-  products: Reducer('products', []),
-  validations: Reducer('validations', []),
+  products: ReduxMixer('products', []),
+  validations: ReduxMixer('validations', []),
 });
 
 export default () => {

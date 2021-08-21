@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/// <reference path="../typings/root.d.ts"/>
 import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
