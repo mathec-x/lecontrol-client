@@ -1,5 +1,5 @@
-export const Host = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : `https:${process.env.API_URL_PROD}`;
-export const SocketApiUrl = process.env.NODE_ENV === 'development' ? 'ws://localhost:3001' : `${process.env.API_URL_PROD}`;
+export const Host = String;
+export const SocketApiUrl = String;
 
 type RequestMethods = "GET"|"POST"|"PUT"|"DELETE";
 export const Request : (method: RequestMethods, uri:String, body: {}, headers: {} ) => Promise<Response>;

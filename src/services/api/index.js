@@ -1,5 +1,5 @@
-export const Host = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : `https:${process.env.API_URL_PROD}`;
-export const SocketApiUrl = process.env.NODE_ENV === 'development' ? 'ws://localhost:3001' : `wss:${process.env.API_URL_PROD}`;
+export const Host = process.env.API_URL || '';
+export const SocketApiUrl = process.env.SOCKET_URL || '';
 
 /** @type { import(".").Request } */
 export const Request = (method, uri, body, headers = {}) => fetch(Host + uri,
