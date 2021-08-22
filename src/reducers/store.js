@@ -17,7 +17,7 @@ const reducers = persistCombineReducers(config, {
   validations: ReduxMixer('validations', []),
 });
 
-export default () => {
+const useStore = () => {
   const store = createStore(
     reducers,
     // applyMiddleware(thunk),
@@ -26,3 +26,5 @@ export default () => {
   const persistor = persistStore(store);
   return { store, persistor };
 };
+
+export default useStore;

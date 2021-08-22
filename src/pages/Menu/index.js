@@ -10,6 +10,7 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import BuildIcon from '@material-ui/icons/Build';
 
 import { withRouter } from 'react-router-dom';
+import localforage from 'localforage';
 import StyledAvatar from '../../components/StyledAvatar';
 
 const Menu = (props) => (
@@ -44,7 +45,27 @@ const Menu = (props) => (
         />
       </ListItem>
 
-      <div style={{ position: 'absolute', bottom: 0 }}>
+      <ListItem
+        divider
+        button
+        onClick={() => {
+          localStorage.clear();
+          sessionStorage.clear();
+          props.history.push('#');
+          localforage.clear().then(() => {
+            window.location.reload();
+          });
+        }}
+      >
+        <ListItemIcon><StyledAvatar variant="rounded" color="primary" /></ListItemIcon>
+        <ListItemText
+          primaryTypographyProps={{ variant: 'subtitle2' }}
+          primary="Signout"
+          secondary="Deslogar sessão"
+        />
+      </ListItem>
+
+      <div style={{ position: 'absolute', bottom: 'auto' }}>
         <ListSubheader>Outros</ListSubheader>
         <ListItem button disabled>
           <ListItemIcon><StyledAvatar variant="rounded" color="primary"><BuildIcon /></StyledAvatar></ListItemIcon>

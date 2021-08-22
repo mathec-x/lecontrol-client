@@ -4,7 +4,7 @@
   "private": true,
   "description": "teste client",
   "main": "./src",
-  "typings": "./src/typings",
+  "typings": "./typings",
   "repository": {
     "url": "https://github.com/mathec-x/lecontrol-client.git"
   },
@@ -33,6 +33,7 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "socket.io-client": "^4.1.3",
+    "socket.io-hook": "mathec-x/socket.io-hook",
     "socket.io-msgpack-parser": "^3.0.1",
     "web-vitals": "^1.0.1"
   },

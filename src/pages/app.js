@@ -1,62 +1,68 @@
-/* eslint-disable react/prop-types */
-import React, { Suspense } from 'react';
-import { Provider } from 'react-redux';
+import React from 'react';
+import { Provider, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import {
-  BrowserRouter, Route, Switch, withRouter,
-} from 'react-router-dom';
-import './app.css';
+import { BrowserRouter } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-
-import SocketIo from '../hooks/useSocket';
+import { SocketIoProvider } from 'socket.io-hook';
+import customParser from 'socket.io-msgpack-parser';
 import AppSuspense from '../components/Suspense';
 import AppBar from '../components/AppBar';
 import PreLoader from '../components/PreLoader';
-import reduxstore from '../reducers/store';
-
+import useStore from '../reducers/store';
 import Menu from './Menu';
-import Register from './Register';
-import Signin from './Signin';
-import Edit from './Register/Edit';
 import { Product } from '../services/api';
+import './app.css';
+import Router from './router';
+// import SocketIo from '../hooks/useSocket';
 
-const Home = React.lazy(() => import('./Home'));
+const Document = () => {
+  const dispatch = useDispatch();
 
-const Pages = withRouter(({ location }) => {
-  const background = location.state?.background;
+  const rmvToken = (key) => localStorage.removeItem(key);
+  const setToken = (key, x) => localStorage.setItem(key, x);
+
   return (
-    <Suspense fallback={<AppSuspense />}>
-      <Switch location={background || location}>
-        <Route path="/" exact component={Home} />
-      </Switch>
-      <Route path="/signin" exact component={Signin} />
-      <Route path="/register" exact component={Register} />
-      <Route path="/register/:uuid" exact component={Edit} />
-    </Suspense>
+    <SocketIoProvider
+      url={process.env.REACT_APP_SOCKET_URL}
+      // suspense={<div className="suspense">carregando ...</div>}
+      onDispatch={dispatch}
+      onRefresh={(data) => setToken('token', data.token)}
+      onDisconnect={() => rmvToken('socket-id')}
+      onConnect={(socket) => {
+        setToken('socket-id', socket.id);
+        return Product.get();
+      }}
+      custom={{
+        preloader: (data) => {
+          console.log(data);
+        },
+      }}
+      options={{
+        parser: customParser,
+        auth: (cb) => cb({ token: localStorage.getItem('token') }),
+      }}
+    >
+      <BrowserRouter>
+        <AppBar />
+        <Container fixed disableGutters>
+          <Router />
+        </Container>
+        <Menu />
+        <PreLoader />
+      </BrowserRouter>
+    </SocketIoProvider>
   );
-});
+};
 
 const App = () => {
-  const { store, persistor } = reduxstore();
-
-  React.useEffect(() => {
-    Product.get();
-  });
+  const { store, persistor } = useStore();
   return (
     <Provider store={store}>
-      <PersistGate loading={false} persistor={persistor}>
-        <SocketIo>
-          <BrowserRouter>
-            <AppBar />
-            <Container fixed disableGutters>
-              <Pages />
-            </Container>
-            <Menu />
-            <PreLoader />
-          </BrowserRouter>
-        </SocketIo>
+      <PersistGate loading={<AppSuspense />} persistor={persistor}>
+        <Document />
       </PersistGate>
     </Provider>
   );
 };
+
 export default App;

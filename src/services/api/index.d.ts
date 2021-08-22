@@ -1,5 +1,5 @@
-export const Host = String;
-export const SocketApiUrl = String;
+export const Host = process.env.REACT_APP_API_URL;
+export const SocketApiUrl = process.env.REACT_APP_SOCKET_URL;
 
 type RequestMethods = "GET"|"POST"|"PUT"|"DELETE";
 export const Request : (method: RequestMethods, uri:String, body: {}, headers: {} ) => Promise<Response>;

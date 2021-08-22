@@ -1,5 +1,5 @@
-export const Host = process.env.API_URL || '';
-export const SocketApiUrl = process.env.SOCKET_URL || '';
+export const Host = process.env.REACT_APP_API_URL || '';
+export const SocketApiUrl = process.env.REACT_APP_SOCKET_URL || '';
 
 /** @type { import(".").Request } */
 export const Request = (method, uri, body, headers = {}) => fetch(Host + uri,
