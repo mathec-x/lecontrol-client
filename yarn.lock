@@ -9429,9 +9429,10 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-redux-mixer@mathec-x/react-redux-mixer:
+react-redux-mixer@^0.0.1:
   version "0.0.1"
-  resolved "https://codeload.github.com/mathec-x/react-redux-mixer/tar.gz/be1593fdffe78ea8d5e582d6d7ce87898d1e39bf"
+  resolved "https://registry.yarnpkg.com/react-redux-mixer/-/react-redux-mixer-0.0.1.tgz#0a25b0bc8ba7d02ff8fa6843aa1a5e2de48b84ee"
+  integrity sha512-O1t21oRBUoCIAP0NBeAfP6npiMgqgErSDJNRIAfpxBDUE09LfQ/1Ovq+E6OxGXlAim3sJIIiX+HDKCck+tVrIQ==
 
 react-redux@^7.2.4:
   version "7.2.4"

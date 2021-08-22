@@ -25,7 +25,7 @@
     "react-iframe": "^1.8.0",
     "react-input-mask": "^2.0.4",
     "react-redux": "^7.2.4",
-    "react-redux-mixer": "mathec-x/react-redux-mixer",
+    "react-redux-mixer": "^0.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-virtualized": "^9.22.3",
