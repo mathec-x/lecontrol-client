@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { SocketIoProvider } from 'socket.io-hook';
 import customParser from 'socket.io-msgpack-parser';
+import { ReactPwa } from 'react-pwa-app';
 import AppSuspense from '../components/Suspense';
 import AppBar from '../components/AppBar';
 import PreLoader from '../components/PreLoader';
@@ -57,11 +58,13 @@ const Document = () => {
 const App = () => {
   const { store, persistor } = useStore();
   return (
-    <Provider store={store}>
-      <PersistGate loading={<AppSuspense />} persistor={persistor}>
-        <Document />
-      </PersistGate>
-    </Provider>
+    <ReactPwa test>
+      <Provider store={store}>
+        <PersistGate loading={<AppSuspense />} persistor={persistor}>
+          <Document />
+        </PersistGate>
+      </Provider>
+    </ReactPwa>
   );
 };
 

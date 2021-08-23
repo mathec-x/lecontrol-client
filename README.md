@@ -58,7 +58,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 └── package.json
 ```
 ## why typings root
-![](public/example_typings.png)
+![](public/assets/example_typings.png)
 
 mainly, 
 we need to rewrite types of some libs so that they work correctly...
@@ -66,7 +66,7 @@ we need to rewrite types of some libs so that they work correctly...
 ### .d.ts declaration files will always help in vscode intellisense.
 
 
-![](public/example_typings_2.png)
+![](public/assets/example_typings_2.png)
 
 ## consume Api services
 
