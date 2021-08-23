@@ -24,7 +24,7 @@
     "react-dom": "^17.0.2",
     "react-iframe": "^1.8.0",
     "react-input-mask": "^2.0.4",
-    "react-pwa-app": "^2.1.1",
+    "react-pwa-app": "^2.1.2",
     "react-redux": "^7.2.4",
     "react-redux-mixer": "^0.0.1",
     "react-router-dom": "^5.2.0",
@@ -53,7 +53,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "postbuild": "node post-build.js",
-    "build:prod": "react-scripts build && rm -rf ../server/build && mv build ../server/build && rm -rf build",
+    "build:prod": "react-scripts build && node post-build.js && rm -rf ../server/build && mv build ../server/build && rm -rf build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

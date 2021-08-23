@@ -26,7 +26,7 @@ const BlackList = [
 //   userVisibleOnly: true,
 // };
 
-self.addEventListener('install', (event) => {
+this.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
@@ -36,12 +36,12 @@ self.addEventListener('install', (event) => {
   );
 });
 
-self.addEventListener('activate', (event) => {
+this.addEventListener('activate', (event) => {
   // ativa steps
   console.log('[serviceWorker] ativo');
   event.waitUntil(
     // registrar o push
-    //  self.registration.pushManager.subscribe(SubscriptionOptions),
+    //  this.registration.pushManager.subscribe(SubscriptionOptions),
     // limpar versão antiga
     caches.keys().then((cacheNames) => Promise.all(cacheNames.map((thisCacheName) => {
       if (thisCacheName !== CACHE_NAME) {
@@ -55,28 +55,32 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-/**
- * cache all fetch data make inside app, this is not really usefull in some cases
- */
-self.addEventListener('fetch', (e) => {
-  e.respondWith((async () => {
-    const r = await caches.match(e.request);
-    if (r) { return r; }
-
-    const response = await fetch(e.request);
-
-    // posts, put, delete are not allowed to cache
-    if (e.request.method === 'GET' && !BlackList.includes(e.request.url)) {
-      console.log(`[Service Worker ${e.request.method}] Caching new resource from ${CACHE_NAME}: ${e.request.url}`);
-      const cache = await caches.open(CACHE_NAME);
-      cache.put(e.request, response.clone());
-    }
-
-    return response;
-  })());
+this.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => response || fetch(event.request)),
+  );
 });
 
-//  self.addEventListener("push", function (event) {
+/**
+   * cache all fetch data make inside app, this is not really usefull in some cases
+   */
+// this.addEventListener('fetch', (e) => {
+//   e.respondWith((async () => {
+//     const r = await caches.match(e.request);
+//     if (r) { return r; }
+//     const response = await fetch(e.request);
+//     // posts, put, delete are not allowed to cache
+//     if (e.request.method === 'GET' && !BlackList.includes(e.request.url)) {
+//       console.log(`[Service Worker ${e.request.method}] Caching new resource from ${CACHE_NAME}: ${e.request.url}`);
+//       const cache = await caches.open(CACHE_NAME);
+//       cache.put(e.request, response.clone());
+//     }
+
+//     return response;
+//   })());
+// });
+
+//  this.addEventListener("push", function (event) {
 //    /**@type {{body: string, title: string, icon: string?}} message */
 //    const message = event.data.json();
 //    console.log(message);
@@ -99,11 +103,11 @@ self.addEventListener('fetch', (e) => {
 //      };
 
 //      event.waitUntil(
-//        self.registration.showNotification(message.title, options)
+//        this.registration.showNotification(message.title, options)
 //      );
 //  });
 
-//  self.addEventListener("notificationclick", function openPushNotification(event) {
+//  this.addEventListener("notificationclick", function openPushNotification(event) {
 //      console.log("Notification click Received.", event.notification.data);
 //     event.notification.close();
 //    //do something

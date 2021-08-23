@@ -2,8 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
-import App from './pages/app';
+
+import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+import Router from './pages/app';
+import ReduxStore from './services/containers/ReduxStore';
+import ProgressiveWebApp from './services/containers/ProgressiveWebApp';
+import WebSocket from './services/containers/WebSocket';
+
+import './index.css';
 import './services/prototypes';
 
 const theme = createTheme({
@@ -26,7 +33,15 @@ const theme = createTheme({
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <App />
+    <ProgressiveWebApp>
+      <ReduxStore>
+        <WebSocket>
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        </WebSocket>
+      </ReduxStore>
+    </ProgressiveWebApp>
   </ThemeProvider>,
   document.getElementById('root'),
 );

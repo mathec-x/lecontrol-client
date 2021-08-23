@@ -1,71 +1,37 @@
-import React from 'react';
-import { Provider, useDispatch } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import { BrowserRouter } from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-import { SocketIoProvider } from 'socket.io-hook';
-import customParser from 'socket.io-msgpack-parser';
-import { ReactPwa } from 'react-pwa-app';
 import AppSuspense from '../components/Suspense';
 import AppBar from '../components/AppBar';
 import PreLoader from '../components/PreLoader';
-import useStore from '../reducers/store';
+
 import Menu from './Menu';
-import { Product } from '../services/api';
-import './app.css';
-import Router from './router';
-// import SocketIo from '../hooks/useSocket';
+import Signin from './Signin';
+import Register from './Register';
+import Edit from './Register/Edit';
 
-const Document = () => {
-  const dispatch = useDispatch();
+const Home = React.lazy(() => import('./Home'));
 
-  const rmvToken = (key) => localStorage.removeItem(key);
-  const setToken = (key, x) => localStorage.setItem(key, x);
+const App = withRouter(({ location }) => {
+  const background = location.state?.background;
 
   return (
-    <SocketIoProvider
-      url={process.env.REACT_APP_SOCKET_URL}
-      // suspense={<div className="suspense">carregando ...</div>}
-      onDispatch={dispatch}
-      onRefresh={(data) => setToken('token', data.token)}
-      onDisconnect={() => rmvToken('socket-id')}
-      onConnect={(socket) => {
-        setToken('socket-id', socket.id);
-        return Product.get();
-      }}
-      custom={{
-        preloader: (data) => {
-          console.log(data);
-        },
-      }}
-      options={{
-        parser: customParser,
-        auth: (cb) => cb({ token: localStorage.getItem('token') }),
-      }}
-    >
-      <BrowserRouter>
-        <AppBar />
-        <Container fixed disableGutters>
-          <Router />
-        </Container>
-        <Menu />
-        <PreLoader />
-      </BrowserRouter>
-    </SocketIoProvider>
+    <>
+      <AppBar />
+      <Container fixed disableGutters>
+        <Suspense fallback={<AppSuspense />}>
+          <Switch location={background || location}>
+            <Route path="/" exact component={Home} />
+          </Switch>
+          <Route path="/signin" exact component={Signin} />
+          <Route path="/register" exact component={Register} />
+          <Route path="/register/:uuid" exact component={Edit} />
+        </Suspense>
+      </Container>
+      <Menu />
+      <PreLoader />
+    </>
   );
-};
-
-const App = () => {
-  const { store, persistor } = useStore();
-  return (
-    <ReactPwa test>
-      <Provider store={store}>
-        <PersistGate loading={<AppSuspense />} persistor={persistor}>
-          <Document />
-        </PersistGate>
-      </Provider>
-    </ReactPwa>
-  );
-};
+});
 
 export default App;
