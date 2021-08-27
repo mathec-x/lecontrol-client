@@ -1,24 +1,25 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import BuildIcon from '@material-ui/icons/Build';
 import GetAppIcon from '@material-ui/icons/GetApp';
-
-import { withRouter } from 'react-router-dom';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import localforage from 'localforage';
+import React from 'react';
 import { usePwa } from 'react-pwa-app';
+import { withRouter } from 'react-router-dom';
+
 import StyledAvatar from '../../components/StyledAvatar';
 
+/**
+ * @type {import('typings/pages').Menu}
+ */
 const Menu = (props) => {
   const pwa = usePwa();
-
-  console.log({ pwa });
 
   return (
     <SwipeableDrawer open={Boolean(window.location.hash === '#menu')} onClose={() => props.history.push('#')} onOpen={() => props.history.push('#menu')}>

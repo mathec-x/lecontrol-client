@@ -1,21 +1,24 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import Dialog from '@material-ui/core/Dialog';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import DialogActions from '@material-ui/core/DialogActions';
 import Collapse from '@material-ui/core/Collapse';
-import CloseIcon from '@material-ui/icons/Close';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import IconButton from '@material-ui/core/IconButton';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import TransitionComponent from '../../components/TransitionComponent';
-import StyledAppBar from '../../components/StyledAppBar';
+import CloseIcon from '@material-ui/icons/Close';
+import React from 'react';
 
+import StyledAppBar from '../../components/StyledAppBar';
+import TransitionComponent from '../../components/TransitionComponent';
 import Login from './Login';
 import Register from './Register';
 
-function Signin(props) {
+/**
+ * @type {import('typings/pages').SignIn}
+ */
+const Signin = (props) => {
   const matches = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   const [open, setOpen] = React.useState(false);
   const [type, setType] = React.useState('login');
@@ -76,6 +79,6 @@ function Signin(props) {
       </DialogActions>
     </Dialog>
   );
-}
+};
 
 export default Signin;

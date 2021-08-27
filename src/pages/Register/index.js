@@ -1,26 +1,28 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
-import Toolbar from '@material-ui/core/Toolbar';
+import DialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
-import { useHistory } from 'react-router-dom';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
-import DialogActions from '@material-ui/core/DialogActions';
-import withAuth from '../../hooks/withAuth';
-import TransitionComponent from '../../components/TransitionComponent';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import CloseIcon from '@material-ui/icons/Close';
+import React from 'react';
+
+import AwaitingButton from '../../components/AwaitingButton';
 import DialogContentList from '../../components/DialogContentList';
 import StyledAppBar from '../../components/StyledAppBar';
-import AwaitingButton from '../../components/AwaitingButton';
+import TransitionComponent from '../../components/TransitionComponent';
+import withAuth from '../../hooks/withAuth';
 import { Product } from '../../services/api';
 import string from '../../services/helpers/string';
 
-function Register() {
+/**
+ * @type { import('typings/pages').Register }
+ */
+const Register = ({ history }) => {
   const matches = useMediaQuery((theme) => theme.breakpoints.down('sm'));
-  const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const [label, setLabel] = React.useState('');
   const [message, setMessage] = React.useState(null);
@@ -100,6 +102,6 @@ function Register() {
       </form>
     </Dialog>
   );
-}
+};
 
 export default withAuth(Register);

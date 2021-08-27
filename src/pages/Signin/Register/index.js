@@ -1,10 +1,11 @@
-import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
-import TextField from '@material-ui/core/TextField';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import TextField from '@material-ui/core/TextField';
+import React from 'react';
+
+import AwaitingButton from '../../../components/AwaitingButton';
 import DialogContentList from '../../../components/DialogContentList';
 import { Auth } from '../../../services/api';
-import AwaitingButton from '../../../components/AwaitingButton';
 import string from '../../../services/helpers/string';
 
 const initialState = {
@@ -14,7 +15,10 @@ const initialState = {
   company: '',
 };
 
-export default function Register() {
+/**
+ * @type {import('typings/pages').SignInRegister}
+ */
+const Register = () => {
   const [form, setForm] = React.useState(initialState);
   const [loading, setLoading] = React.useState(false);
   const [message, setMessage] = React.useState('');
@@ -104,4 +108,6 @@ export default function Register() {
       </div>
     </DialogContentList>
   );
-}
+};
+
+export default Register;

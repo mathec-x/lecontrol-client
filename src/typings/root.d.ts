@@ -1,8 +1,8 @@
+import { Product, User, Validation } from './models';
+
 import type { CustomCommands, Spec } from "immutability-helper";
 import type { Moment } from "moment";
-import { User, Product, Validation } from './models'
-
-  declare module 'react-redux' {
+declare module 'react-redux' {
   export interface DefaultRootState {
     user: User,
     products: Product[],

@@ -1,24 +1,25 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import Typography from '@material-ui/core/Typography';
 import BuildIcon from '@material-ui/icons/Build';
 import StorefrontIcon from '@material-ui/icons/Storefront';
-import StyledCard from '../../components/StyledCard';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import React from 'react';
+import { useSelector } from 'react-redux';
+
 import FlexBox from '../../components/FlexBox';
 import StyledAvatar from '../../components/StyledAvatar';
+import StyledCard from '../../components/StyledCard';
 import StyledListItem from '../../components/StyledListItem';
 
 /**
- * @type {React.FC<import('react-router-dom').RouteComponentProps}
+ * @type {import('typings/pages').Home}
  */
 const Home = (props) => {
   const products = useSelector((state) => state.products);

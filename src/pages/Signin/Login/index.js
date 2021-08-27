@@ -1,18 +1,21 @@
-import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
-import TextField from '@material-ui/core/TextField';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import TextField from '@material-ui/core/TextField';
+import React from 'react';
 import { useSocket } from 'socket.io-hook';
+
+import AwaitingButton from '../../../components/AwaitingButton';
 import DialogContentList from '../../../components/DialogContentList';
 import { Auth } from '../../../services/api';
-import AwaitingButton from '../../../components/AwaitingButton';
 
 const initialState = {
   mail: '',
   password: '',
 };
-
-export default function Login(props) {
+/**
+ * @type { import('typings/pages').SignInLogin}
+ */
+const Login = (props) => {
   const [form, setForm] = React.useState(initialState);
   const [loading, setLoading] = React.useState(false);
   const [message, setMessage] = React.useState(null);
@@ -83,4 +86,6 @@ export default function Login(props) {
       </div>
     </DialogContentList>
   );
-}
+};
+
+export default Login;

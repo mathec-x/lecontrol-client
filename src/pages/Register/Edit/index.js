@@ -1,32 +1,31 @@
 /* eslint-disable react/prop-types */
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import CloseIcon from '@material-ui/icons/Close';
+import Delete from '@material-ui/icons/Delete';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Dialog from '@material-ui/core/Dialog';
-import List from '@material-ui/core/List';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import DialogActions from '@material-ui/core/DialogActions';
-import Button from '@material-ui/core/Button';
-
-import Delete from '@material-ui/icons/Delete';
-import withAuth from '../../../hooks/withAuth';
-import TransitionComponent from '../../../components/TransitionComponent';
 import DialogContentList from '../../../components/DialogContentList';
-import StyledAppBar from '../../../components/StyledAppBar';
-import { Product, Validation } from '../../../services/api';
 import InputField from '../../../components/InputField';
-/**
- * @type {React.FC<import('react-router-dom').RouteComponentProps<{uuid: string}>}
- */
+import StyledAppBar from '../../../components/StyledAppBar';
+import TransitionComponent from '../../../components/TransitionComponent';
+import withAuth from '../../../hooks/withAuth';
+import { Product, Validation } from '../../../services/api';
 
+/**
+ * @type {import('typings/pages').RegisterEdit}
+ */
 const Edit = ({ history, match: { params } }) => {
   const matches = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   const [open, setOpen] = React.useState(false);
